@@ -39,7 +39,8 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->word(),
-            'content' => $this->faker->text()
+            'content' => $this->faker->text(400),
+            'theme' => $this->faker->word()
         ];
     }
 }

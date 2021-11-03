@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+
 class blogController extends Controller
 {
     /**
@@ -11,7 +13,8 @@ class blogController extends Controller
      */
     public function __invoke()
     {
-        return view('blog.index');
+        $posts = Post::all();
+        return view('blog.index', compact('posts'));
     }
 
 

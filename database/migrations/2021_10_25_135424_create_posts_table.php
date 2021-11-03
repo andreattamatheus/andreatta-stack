@@ -19,7 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('author')->default('Matheus Andreatta');
             $table->boolean('status')->default(true);
             $table->string('content', 4000);
-            $table->string('tags');
+            $table->string('theme')->nullable();
+            $table->string('tags')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
