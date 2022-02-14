@@ -34,7 +34,7 @@
       href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
     />
     <link rel="stylesheet" href="../assets/styles/tailwind.css" />
-    <title>Profile | Notus JS by Creative Tim</title>
+    <title>Matheus Andreatta | Blog</title>
   </head>
   <body class="text-blueGray-700 antialiased">
     <main class="profile-page">
