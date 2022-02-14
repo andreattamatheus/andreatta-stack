@@ -17,6 +17,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author')->default('Matheus Andreatta');
+            $table->foreignId('user_id')->constrained();
+            $table->string('img_url')->nullable();
             $table->boolean('status')->default(true);
             $table->string('content', 4000);
             $table->string('theme')->nullable();

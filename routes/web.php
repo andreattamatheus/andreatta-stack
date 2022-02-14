@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +16,68 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'indexController@index');
+Route::get('/login/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
 
-Route::get('/blog', 'blogController')->name('blog.index');
+Route::get('/login/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
+    $user = User::where('github_id', $githubUser->id)->first();
+
+    if ($user) {
+        $user->update([
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    } else {
+        $user = User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'github_id' => $githubUser->id,
+            'github_token' => $githubUser->token,
+            'github_refresh_token' => $githubUser->refreshToken,
+        ]);
+    }
+
+    Auth::login($user);
+
+    return redirect('/admin');
+});
+
+Route::get('/', 'indexController@index')->name('index');
+
+Route::get('/blog', 'blogController@index')->name('blog.index');
+Route::get('/blog/post/{id}', 'blogController@showPost')->whereNumber('id')->name('blog.post.show');
 
 // Route::get('/teste', 'LoginController@index');
-Route::get('/login', 'LoginController@index');
-Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/login', 'Auth\LoginController@index');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['middleware' => 'auth','prefix' => '/admin/posts'], function () {
-    Route::get('/', 'postController@index')->name('posts.index');
-    Route::get('/create', 'postController@create')->name('post.create');
-    Route::get('/{id}', 'postController@show')->name('post.show');
-    Route::get('/{id}/edit', 'postController@edit')->name('post.edit');
-    Route::post('/create', 'postController@store')->name('post.store');
-    Route::put('/{id}', 'postController@update');
-    Route::delete('/{id}', 'postController@destroy');
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['prefix' => '/admin'], function () {
+        Route::get('', 'Admin\adminController@index')->name('admin.index');
+    });
+
+    Route::group(['prefix' => '/users'], function () {
+        Route::get('', 'Admin\userController@index')->name('user.index');
+    });
+
+    Route::group(['prefix' => '/posts'], function () {
+        Route::get('/', 'Admin\postController@index')->name('admin.posts.index');
+        Route::get('/create', 'Admin\postController@create')->name('post.create');
+        Route::get('/{id}/edit', 'Admin\postController@edit')->whereNumber('id')->name('post.edit');
+        Route::post('/create', 'Admin\postController@store')->name('post.store');
+        Route::put('/{id}', 'Admin\postController@update')->whereNumber('id')->name('post.update');
+        Route::delete('/{id}', 'Admin\postController@destroy')->whereNumber('id')->name('post.destroy');
+    });
+});
+
+
+Route::fallback( function(){
+    return view('pages.404-page');
 });

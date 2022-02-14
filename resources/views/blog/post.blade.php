@@ -2,6 +2,26 @@
 @extends('layouts.post-layout')
 
 @section('content')
+    <nav id="header" class="fixed w-full z-10 top-0">
+
+        <div id="progress" class="h-1 z-20 top-0" style="background:linear-gradient(to right, #4dc0b5 var(--scroll), transparent 0);"></div>
+
+        <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-center mt-0 py-3">
+            <a class="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl" href="{{route('blog.index')}}">
+                CLIQUE PARA VOLTAR PARA O COMEÇO
+            </a>
+        </div>
+
+        <div class="block lg:hidden pr-4">
+            <button id="nav-toggle"
+                class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-green-500 appearance-none focus:outline-none">
+                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <title>Menu</title>
+                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
 
 	<!--Container-->
 	<div class="container w-full md:max-w-3xl mx-auto pt-20">
@@ -11,6 +31,7 @@
                 <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{$post->title}}</h1>
                 <p class="text-sm md:text-base font-normal text-gray-600">Publicado {{\Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</p>
             </div>
+            <img class="pt-10" src="{{$post->img_url}}" alt="" srcset="">
             <div>
                 {{$post->content}}
             </div>
@@ -46,14 +67,14 @@
 
 		<!--Author-->
 		<div class="flex w-full items-center font-sans px-4 py-12">
-			<img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
+			<img class="w-10 h-10 rounded-full mr-4" src="{{$post->user->img_url}}" alt="Avatar of Author">
 			<div class="flex-1 px-2">
-				<p class="text-base font-bold text-base md:text-xl leading-none mb-2">{{$post->author}}</p>
+				<p class="text-base font-bold text-base md:text-xl leading-none ">{{$post->author}}</p>
 				<p class="text-gray-600 text-xs md:text-base">Desenvolvedor da vida</a></p>
 			</div>
-			<div class="justify-end">
+			{{-- <div class="justify-end">
 				<button class="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">Read More</button>
-			</div>
+			</div> --}}
 		</div>
 		<!--/Author-->
 

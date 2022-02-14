@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+    private $name;
+    private $email;
+    private $password;
+
     protected $fillable = [
         'name',
         'email',
@@ -41,4 +46,86 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function setUser(string $name, string $email)
+    {
+        $this->setName($name);
+        if(!$this->setEmail($email)){
+            return false;
+        }
+        return true;
+    }
+
+
+    public function getFirstUser()
+    {
+        $first = User::first();
+        return $first;
+    }
+
+
+    /**
+     * Get the attributes that are mass assignable.
+     *
+     * @return  string[]
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the attributes that are mass assignable.
+     *
+     * @param  string[]  $name  The attributes that are mass assignable.
+     *
+     * @return  self
+     */
+    private function setName(string $name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */
+    private function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */
+    private function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
 }

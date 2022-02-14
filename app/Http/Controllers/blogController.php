@@ -11,10 +11,17 @@ class blogController extends Controller
      *
      * @return void
      */
-    public function __invoke()
+    public function index()
     {
-        $posts = Post::all();
-        return view('blog.index', compact('posts'));
+        $posts = Post::orderBy('id','desc')->paginate(5);
+        $postCounter = Post::all()->count();
+        return view('blog.index', compact('posts', 'postCounter'));
+    }
+
+    public function showPost(Post $id)
+    {
+        $post = Post::find($id)->first();
+        return view('blog.post', compact('post'));
     }
 
 

@@ -17,6 +17,7 @@ class CreateIndexTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('subtitle');
+            $table->string('img_url')->default('https://github.com/andreattamatheus.png');
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();

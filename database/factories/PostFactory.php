@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Auth;
 
 class PostFactory extends Factory
 {
@@ -39,6 +40,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->word(),
+            'user_id' => 1,
             'content' => $this->faker->text(400),
             'theme' => $this->faker->word()
         ];
