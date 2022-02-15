@@ -9,6 +9,8 @@
     <meta name="description" content="description here" />
     <meta name="keywords" content="keywords,here" />
 
+    <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/styles/tailwind.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -20,39 +22,48 @@
 
         @yield('content')
 
-        <footer class="bg-white border-t border-gray-400 shadow">
-            <div class="container max-w-4xl mx-auto flex py-8">
-
-                <div class="w-full mx-auto flex flex-wrap">
-                    <div class="flex w-full md:w-1/2 ">
-                        <div class="px-8">
-                            <h3 class="font-bold text-gray-900">About</h3>
-                            <p class="py-4 text-gray-600 text-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
-                            </p>
+        <footer class="relative bg-blueGray-200 pt-8 pb-6">
+            <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
+                style="transform: translateZ(0px)">
+                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                    version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                    <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap text-center lg:text-center">
+                    <div class="w-full  px-4">
+                        <h4 class="text-3xl font-semibold">The game doesn't end here!</h4>
+                        <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+                            Find me on any of these platforms, i try to reply within 5 business days.
+                        </h5>
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <button
+                                class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button"
+                                id="myButtonInstagram">
+                                <i class="fab fa-instagram"></i></button><button
+                                class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button"
+                                id="myButtonLinkedin">
+                                <i class="fab fa-linkedin"></i></button><button
+                                class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button"
+                                id="myButtonGithub">
+                                <i class="fab fa-github"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="flex w-full md:w-1/2">
-                        <div class="px-8">
-                            <h3 class="font-bold text-gray-900">Social</h3>
-                            <ul class="list-reset items-center text-sm pt-3">
-                                <li>
-                                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">LinkedIn</a>
-                                </li>
-                                <li>
-                                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">Instagram</a>
-                                </li>
-                                <li>
-                                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-1" href="#">Github</a>
-                                </li>
-                            </ul>
+                </div>
+                <hr class="my-6 border-blueGray-300" />
+                <div class="flex flex-wrap items-center md:justify-between justify-center">
+                    <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                        <div class="text-sm text-blueGray-500 font-semibold py-1">
+                            Copyright © <span id="get-current-year"></span> Developed by Matheus Andreatta.
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </footer>
 
