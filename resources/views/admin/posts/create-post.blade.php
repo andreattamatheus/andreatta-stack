@@ -11,13 +11,9 @@
     <div class="px-4 md:px-10 pt-12 mx-auto w-full">
         <div class="container w-full md:max-w-3xl mx-auto mt-8">
                 @if (!$errors->isEmpty())
-                    <div class="alert alert-danger" role="alert">
-                        @foreach ($errors->all() as $error)
-                            <ul>
-                                <li>{{ $error }}</li>
-                            </ul>
-                        @endforeach
-                    </div>
+                    @foreach ($errors->all() as $error)
+                        <x-message-crud type="alert" :message="$error"/>
+                    @endforeach
                 @endif
 
                 <form class="bg-white shadow-md rounded mb-4 lg:px-8 py-8 "  method="POST" action="{{route('post.store')}}" >
@@ -32,7 +28,7 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
                             Inserir imagem de capa:
                         </label>
-                        {{-- <input required class="form-control" type="file" id="formFile"> --}}
+                        <input required class="form-control" type="file" name="file" id="formFile">
                     </div>
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="content">

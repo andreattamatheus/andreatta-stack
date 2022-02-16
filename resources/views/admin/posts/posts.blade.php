@@ -12,6 +12,16 @@
     <div
       class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white"
     >
+        @if (\Session::has('message'))
+            <x-message-crud :type="success" :message="\Session::get('message')"/>
+        @endif
+
+        @if (!$errors->isEmpty())
+            @foreach ($errors->all() as $error)
+                <x-message-crud :type="alert" :message="$error"/>
+            @endforeach
+        @endif
+
         <div class="rounded-t mb-0 px-4 py-3 border-0">
             <div class="flex flex-wrap items-center">
                 <div
@@ -72,9 +82,9 @@
                             <a href="{{route('post.edit', ['id' => $post->id ])}}" class="text-indigo-600">
                                 <i class="fas fa-tools mr-2 text-sm text-blueGray-300"></i>
                             </a>
-                            <a onclick="openModalDelete({{$post->id}})" class="text-indigo-600 cursor-pointer">
+                            <button onclick="openModalDelete({{$post->id}})" class="text-indigo-600 cursor-pointer" data-modal-toggle="popup-modal">
                                 <i class="fas fa-trash mr-2 text-sm text-blueGray-300"></i>
-                            </a>
+                            </button>
                             <x-modal-delete :id="$post->id"/>
                         </td>
                     </tr>

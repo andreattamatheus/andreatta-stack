@@ -1,3 +1,23 @@
+<!--
+
+=========================================================
+* Notus JS - v1.1.0 based on Tailwind Starter Kit by Creative Tim
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/notus-js
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md)
+
+* Tailwind Starter Kit Page: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +30,9 @@
     <meta name="keywords" content="keywords,here" />
 
     <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="../assets/styles/tailwind.css" />
+    {{-- <link rel="stylesheet" href="../assets/styles/tailwind.css" /> --}}
+
+    <link rel="stylesheet" href="{{asset('assets/styles/tailwind.css')}}" />
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -22,7 +44,7 @@
 
         @yield('content')
 
-        <footer class="relative bg-blueGray-200 pt-8 pb-6">
+        <footer class="relative bg-blueGray-200 pt-8 pb-6 mt-32">
             <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
                 style="transform: translateZ(0px)">
                 <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"

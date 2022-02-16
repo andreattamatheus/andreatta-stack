@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Index;
 use App\Models\User;
 use App\Services\GitHubIntegration;
@@ -33,7 +34,7 @@ class indexController extends Controller
             $user = $github->getUser();
             return view('home', compact('user'));
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect()->route('admin.posts.index')->with('error', $th);
         }
     }
 

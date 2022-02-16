@@ -25,13 +25,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" />
-    <title>Dashboard | Notus JS by Creative Tim</title>
+    <title>Matheus Andreatta | Admin</title>
 
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" />
 
-    {{-- <link rel="stylesheet" href="{{asset('assets/styles/tailwind.css')}}" /> --}}
+    <link rel="stylesheet" href="{{asset('assets/styles/tailwind.css')}}" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     @yield('css')
@@ -151,8 +151,6 @@
             <nav
                 class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
-                    <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                        href="./index.html">Dashboard</a>
                     <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
                         <div class="relative flex w-full flex-wrap items-stretch">
                             <span

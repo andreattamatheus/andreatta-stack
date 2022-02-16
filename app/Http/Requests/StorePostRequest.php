@@ -25,8 +25,16 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'file' => ['required', 'image', 'max: 1999'],
+            'file' => ['required'],
             'content' => ['required', 'string']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'O título é obrigatório.',
+            'file.required'  => 'A capa é obrigatória',
         ];
     }
 }

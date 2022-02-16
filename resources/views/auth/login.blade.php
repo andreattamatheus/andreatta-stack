@@ -34,16 +34,20 @@
                     </h6>
                   </div>
                   <div class="btn-wrapper text-center">
+                    <a href="{{route('github.login')}}">
+                        <button
+                        class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                        type="button"
+                        >
+                        <img
+                            alt="..."
+                            class="w-5 mr-1"
+                            src="../../assets/img/github.svg"
+                        />Github</button
+
+                        >
+                    </a>
                     <button
-                      class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                      type="button"
-                    >
-                      <img
-                        alt="..."
-                        class="w-5 mr-1"
-                        src="../../assets/img/github.svg"
-                      />Github</button
-                    ><button
                       class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                       type="button"
                     >
@@ -92,6 +96,7 @@
                         ><input
                           id="customCheckLogin"
                           type="checkbox"
+                          name="remember"
                           class="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                         /><span
                           class="ml-2 text-sm font-semibold text-blueGray-600"

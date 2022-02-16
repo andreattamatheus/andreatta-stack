@@ -40,7 +40,6 @@ class postController extends Controller
     public function store(StorePostRequest $request)
     {
         try {
-            $validation = $request->validate();
             $postService = new PostService();
             $postService->create($request);
             return redirect()->route('admin.posts.index');
@@ -92,6 +91,12 @@ class postController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+           $post = new PostService;
+           $post->destroy($id);
+           return redirect()->route('admin.posts.index');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors('errors', $th);
+        }
     }
 }

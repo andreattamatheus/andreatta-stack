@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\GitHubController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,45 +16,19 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/login/redirect', function () {
-    return Socialite::driver('github')->redirect();
-});
+Route::get('/', 'Frontend\indexController@index')->name('index');
 
-Route::get('/login/callback', function () {
-    $githubUser = Socialite::driver('github')->user();
+Route::get('/blog', 'Frontend\blogController@index')->name('blog.index');
+Route::get('/blog/post/{id}', 'Frontend\blogController@showPost')->whereNumber('id')->name('blog.post.show');
 
-    $user = User::where('github_id', $githubUser->id)->first();
+Route::get('/portfolio', 'Frontend\portfolioController@index')->name('portfolio.index');
 
-    if ($user) {
-        $user->update([
-            'github_token' => $githubUser->token,
-            'github_refresh_token' => $githubUser->refreshToken,
-        ]);
-    } else {
-        $user = User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
-            'github_token' => $githubUser->token,
-            'github_refresh_token' => $githubUser->refreshToken,
-        ]);
-    }
-
-    Auth::login($user);
-
-    return redirect('/admin');
-});
-
-Route::get('/', 'indexController@index')->name('index');
-
-Route::get('/blog', 'blogController@index')->name('blog.index');
-Route::get('/blog/post/{id}', 'blogController@showPost')->whereNumber('id')->name('blog.post.show');
-
-// Route::get('/teste', 'LoginController@index');
 Route::get('/login', 'Auth\LoginController@index');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('auth/github', 'Auth\GitHubController@gitRedirect')->name('github.login');
+Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);
 
 
 Route::group(['middleware' => 'auth'], function () {
