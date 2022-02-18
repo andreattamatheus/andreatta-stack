@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Frontend\indexController@index')->name('index');
 
 Route::get('/blog', 'Frontend\blogController@index')->name('blog.index');
-Route::get('/blog/post/{id}', 'Frontend\blogController@showPost')->whereNumber('id')->name('blog.post.show');
+Route::get('/blog/post/{id}', 'Frontend\blogController@show')->whereNumber('id')->name('blog.show');
 
 Route::get('/portfolio', 'Frontend\portfolioController@index')->name('portfolio.index');
+Route::get('/portfolio/{id}', 'Frontend\portfolioController@show')->name('portfolio.show');
 
 Route::get('/login', 'Auth\LoginController@index');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => '/users'], function () {
         Route::get('', 'Admin\userController@index')->name('user.index');
+        Route::put('', 'Admin\userController@update')->name('user.update');
     });
 
     Route::group(['prefix' => '/posts'], function () {

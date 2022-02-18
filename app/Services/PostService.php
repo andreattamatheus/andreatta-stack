@@ -7,25 +7,34 @@ use Illuminate\Support\Facades\Auth;
 
 class PostService
 {
-    public function create($request)
+    public function create(StorePostRequest $request)
     {
-        // $imageWithExt = $request->file('image')->getClientOriginalName();
-        // // Get Filename
-        // $filename = pathinfo($imageWithExt, PATHINFO_FILENAME);
-        // // Get just Extension
-        // $extension = $request->file('image')->getClientOriginalExtension();
-        // // Filename To store
-        // $fileNameToStore = $filename. '_'. time().'.'.$extension;
-        // // Upload Image
-        // $path = $request->file('image')->storeAs('public/image', $fileNameToStore);
+        $imageWithExt = $request->file('image')->getClientOriginalName();
 
-        $post = Post::create([
+        $getFilename = pathinfo($imageWithExt, PATHINFO_FILENAME);
+
+        $getExtension = $request->file('image')->getClientOriginalExtension();
+
+        $fileNameToStore = $getFilename. '_'. time().'.'.$getExtension;
+
+        // Save the file locally in the storage/public/ folder under a new folder named /assets/img/posts
+        $path = $request->file('image')->move('assets/img/posts', $fileNameToStore);
+
+        $post = $this->createPost($request, $path);
+
+        return $post;
+    }
+
+    private function createPost($request, $path)
+    {
+        Post::create([
             'title' => $request->title,
             'user_id' => Auth::id(),
-            'img_url' => 'https://v1.tailwindcss.com/_next/static/media/tailwind-ui-sidebar.2ccd3a8ec5f31f428204b5c3c4d9a485.png',
+            'img_url' => $path,
             'content' => $request->content
         ]);
-        return $post;
+
+        return $this;
     }
 
     public function destroy($id)

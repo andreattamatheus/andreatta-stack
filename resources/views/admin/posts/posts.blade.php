@@ -70,7 +70,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                <a class="text-indigo-600 hover:text-indigo-900" href="{{route('blog.post.show', ['id' => $post->id ])}}">{{$post->title}}</a>
+                                <a class="text-indigo-600 hover:text-indigo-900" href="{{route('blog.show', ['id' => $post->id ])}}">{{$post->title}}</a>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">

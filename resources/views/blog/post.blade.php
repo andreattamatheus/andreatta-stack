@@ -1,5 +1,5 @@
 
-@extends('layouts.post-layout')
+@extends('layouts.site-layout')
 
 @section('content')
     <nav id="header" class="fixed w-full z-10 top-0 bg-gray-200 font-sans leading-normal tracking-normal">
@@ -28,9 +28,9 @@
 		<div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal" style="font-family:Georgia,serif;">
             <div class="font-sans">
                 <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{$post->title}}</h1>
-                <p class="text-sm md:text-base font-normal text-gray-600">Publicado {{\Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</p>
+                <p class="text-sm md:text-base font-normal text-gray-600">Publicado {{$post->created_at }}</p>
             </div>
-            <img class="pt-10" src="{{$post->img_url}}" alt="" srcset="">
+            <img class="pt-10" src="{{asset($post->img_url)}}" alt="" srcset="">
             <div>
                 {{$post->content}}
             </div>

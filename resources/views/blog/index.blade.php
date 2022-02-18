@@ -1,4 +1,4 @@
-@extends('layouts.post-layout')
+@extends('layouts.site-layout')
 
 
 @section('content')
@@ -16,7 +16,7 @@
                     <a class="inline-block text-gray-600 font-bold no-underline hover:text-gray-600 hover:underline py-2 px-2" href="#">BLOG</a>
                     </li>
                     <li class="mr-2">
-                    <a class="inline-block text-gray-600 no-underline hover:text-gray-600 hover:underline py-2 px-2" href="#">PORTFOLIO</a>
+                    <a class="inline-block text-gray-600 no-underline hover:text-gray-600 hover:underline py-2 px-2" href="{{route('portfolio.index')}}">PORTFOLIO</a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +31,7 @@
                     <!--1/3 col -->
                     <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-                            <a href="{{route('blog.post.show', ['id' => $post->id ])}}" class="flex flex-wrap no-underline hover:no-underline">
+                            <a href="{{route('blog.show', ['id' => $post->id ])}}" class="flex flex-wrap no-underline hover:no-underline">
                                 <img src="{{$post->img_url}}" class="h-64 w-full rounded-t pb-6">
                                 <p class="w-full text-gray-600 text-xs md:text-sm px-6">{{$post->tag}}</p>
                                 <div class="w-full font-bold text-xl text-gray-900 px-6">{{$post->title}}</div>

@@ -20,6 +20,7 @@ class User extends Authenticatable
 
     private $name;
     private $email;
+    private $img_url;
     private $password;
 
     protected $fillable = [
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'password',
         'github_id',
         'auth_type',
+        'img_url'
     ];
 
     /**
@@ -50,12 +52,13 @@ class User extends Authenticatable
     ];
 
 
-    public function setUser(string $name, string $email)
+    public function setUser(string $name, string $email, string $path)
     {
         $this->setName($name);
         if(!$this->setEmail($email)){
             return false;
         }
+        $this->setImg_url($path);
         return true;
     }
 
@@ -127,6 +130,26 @@ class User extends Authenticatable
     private function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of img_url
+     */
+    public function getImg_url()
+    {
+        return $this->img_url;
+    }
+
+    /**
+     * Set the value of img_url
+     *
+     * @return  self
+     */
+    private function setImg_url($img_url)
+    {
+        $this->img_url = $img_url;
 
         return $this;
     }

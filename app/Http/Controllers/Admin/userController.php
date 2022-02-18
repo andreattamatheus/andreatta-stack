@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class userController extends Controller
@@ -67,9 +68,20 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        try {
+            $user = new UserService();
+            $user->update($request);
+        } catch (\Throwable $th) {
+            dd($th);
+
+            //throw $th;
+        }
+
+
+
+
     }
 
     /**

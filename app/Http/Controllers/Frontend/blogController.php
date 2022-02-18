@@ -19,7 +19,7 @@ class blogController extends Controller
         return view('blog.index', compact('posts', 'postCounter'));
     }
 
-    public function showPost(Post $id)
+    public function show(Post $id)
     {
         $post = Post::find($id)->first();
         return view('blog.post', compact('post'));

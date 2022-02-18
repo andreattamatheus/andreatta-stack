@@ -16,7 +16,7 @@
                     @endforeach
                 @endif
 
-                <form class="bg-white shadow-md rounded mb-4 lg:px-8 py-8 "  method="POST" action="{{route('post.store')}}" >
+                <form class="bg-white shadow-md rounded mb-4 lg:px-8 py-8 " enctype="multipart/form-data"  method="POST" action="{{route('post.store')}}" >
                     @csrf
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
@@ -28,7 +28,21 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
                             Inserir imagem de capa:
                         </label>
-                        <input required class="form-control" type="file" name="file" id="formFile">
+                            <input required class="form-control
+                            block
+                            w-full
+                            px-3
+                            py-1.5
+                            text-base
+                            font-normal
+                            text-gray-700
+                            bg-white bg-clip-padding
+                            border border-solid border-gray-300
+                            rounded
+                            transition
+                            ease-in-out
+                            m-0
+                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" name="image" type="file" id="formFile">
                     </div>
                     <div class="mb-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="content">
