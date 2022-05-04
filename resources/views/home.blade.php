@@ -40,7 +40,7 @@
                         <div class="flex flex-wrap justify-center ">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center ">
                                 <div class="relative ">
-                                    <img alt="..." src="{{$user['avatar_url']}} ?? ''"
+                                    <img alt="..." src="{{optional($user['avatar_url'])}}"
                                         class="animate-pulse shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
                                 </div>
                             </div>
@@ -103,21 +103,21 @@
                             <div class="w-full pb-12">
                                 <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
                                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                                        <a href="/blog" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-600"
+                                        <a href="{{route('blog.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-600"
                                             data-tab-toggle="icon-tab-profile-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-profile-amber')">
                                             <i class="fas fa-space-shuttle text-base mr-1"></i> Blog
                                         </a>
                                     </li>
                                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                                        <a href="/blog" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
+                                        <a href="{{route('portfolio.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
                                             data-tab-toggle="icon-tab-settings-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-settings-amber')">
                                             <i class="fas fa-cog text-base mr-1"></i> Portfolio
                                         </a>
                                     </li>
                                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                                        <a href="/blog" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
+                                        <a href="/functions" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
                                             data-tab-toggle="icon-tab-options-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-options-amber')">
                                             <i class="fas fa-briefcase text-base mr-1"></i> The only choice!
