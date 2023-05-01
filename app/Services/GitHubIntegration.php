@@ -8,11 +8,12 @@ class GitHubIntegration
 {
     public function getUser()
     {
-        $res = Http::withToken(env('GITHUB_TOKEN'))
-                ->get('https://api.github.com/users/' . env('GITHUB_USERNAME'));
+
+        $res = Http::withToken(config('auth.github_token'))
+                ->get('https://api.github.com/users/' . config('auth.github_username'));
 
         if ($res->status() == 200) {
-            return json_decode($res->body(),true);
+            return json_decode($res->body());
         }
 
     }

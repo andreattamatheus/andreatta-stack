@@ -108,4 +108,8 @@ return [
 
     'password_timeout' => 10800,
 
+    'github_token' => env('GITHUB_TOKEN'),
+    'github_username' => env('GITHUB_USERNAME'),
+    'github_password' => env('GITHUB_PASSWORD')
+
 ];

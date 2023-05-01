@@ -40,7 +40,7 @@
                         <div class="flex flex-wrap justify-center ">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center ">
                                 <div class="relative ">
-                                    <img alt="..." src="{{optional($user['avatar_url'])}}"
+                                    <img alt="..." src="{{$user->avatar_url}}"
                                         class="animate-pulse shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
                                 </div>
                             </div>
@@ -62,12 +62,12 @@
                                     </div>
                                     <div class="mr-4 p-3 text-center">
                                         <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$user['followers']
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$user->followers
                                             ?? ''}}</span><span class="text-sm text-blueGray-400">Followers</span>
                                     </div>
                                     <div class="lg:mr-4 p-3 text-center">
                                         <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$user['following']
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{$user->following
                                             ?? ''}}</span><span class="text-sm text-blueGray-400">Following</span>
                                     </div>
                                 </div>
@@ -75,15 +75,15 @@
                         </div>
                         <div class="text-center mt-12">
                             <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                                {{$user['name'] ?? ''}}
+                                {{$user->name ?? ''}}
                             </h3>
                             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                 <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                                {{$user['location'] ?? ''}}
+                                {{$user->location ?? ''}}
                             </div>
                             <div class="mb-2 text-blueGray-600 mt-10">
                                 <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Developer at
-                                {{$user['company'] ?? ''}}
+                                {{$user->company ?? ''}}
                             </div>
                             <div class="mb-2 text-blueGray-600">
                                 <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of YouTube
@@ -93,7 +93,7 @@
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full lg:w-9/12 px-4">
                                     <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                        {{$user['bio'] ?? ''}}
+                                        {{$user->bio ?? ''}}
                                     </p>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                     <div class="text-sm text-blueGray-500 font-semibold py-1">
                         Copyright © <span id="get-current-year"></span> Developed by
                         <a href="https://www.creative-tim.com?ref=njs-profile"
-                            class="text-blueGray-500 hover:text-blueGray-800">{{$user['login']}}</a>.
+                            class="text-blueGray-500 hover:text-blueGray-800">{{$user->login}}</a>.
                     </div>
                 </div>
             </div>
@@ -210,7 +210,7 @@
 </script>
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
-        window.open(`{{$user['html_url']}}`, "_blank");
+        window.open(`{{$user->html_url}}`, "_blank");
     };
     document.getElementById("myButtonInstagram").onclick = function () {
         window.open("http://instagram.com.br/andreattamatheus", "_blank");
@@ -219,7 +219,7 @@
         window.open("https://www.linkedin.com/in/matheusandreatta/", "_blank");
     };
     document.getElementById("myButtonGithub").onclick = function () {
-        window.open(`{{$user['html_url']}}`, "_blank");
+        window.open(`{{$user->html_url}}`, "_blank");
     };
 </script>
 
