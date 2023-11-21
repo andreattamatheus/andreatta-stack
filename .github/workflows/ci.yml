@@ -1,16 +1,38 @@
-name: matheusandreatta.com CI
+name: Laravel Deployment
+
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main  # You can change this to your main branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Repo Checkout
-        uses: actions/checkout@v1
-      - name: Deploy to host
-        uses: easingthemes/ssh-deploy@main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1  # Adjust to your PHP version
+
+      - name: Install Composer
+        run: |
+          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+          php -r "if (hash_file('sha384', 'composer-setup.php') === 'YOUR_HASH_HERE') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+          php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+          php -r "unlink('composer-setup.php');"
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --no-ansi --no-progress
+
+      - name: Build Assets
+        run: php artisan asset:generate
+
+      - name: Deploy to HostGator
+        uses: easingthemes/ssh-deploy@v2
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rltgoDzvO --delete"
@@ -18,4 +40,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}  # Adjust the path to your web root
+
