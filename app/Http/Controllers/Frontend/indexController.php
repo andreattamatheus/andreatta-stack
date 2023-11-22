@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Services\GitHubIntegration;
 use Illuminate\Http\Client\Request;
 
-class indexController extends Controller
+use function PHPSTORM_META\type;
+
+class IndexController extends Controller
 {
     private $index;
 
@@ -29,13 +31,9 @@ class indexController extends Controller
      */
     public function index()
     {
-        try {
-            $github = new GitHubIntegration();
-            $user = $github->getUser();
-            return view('home', compact('user'));
-        } catch (\Throwable $th) {
-            return redirect()->route('admin.posts.index')->with('error', $th);
-        }
+        $github = new GitHubIntegration();
+        $user = $github->getUser();
+        return view('home', compact('user'));
     }
 
     /**

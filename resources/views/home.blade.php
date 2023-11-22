@@ -33,14 +33,14 @@
             </div>
         </section>
         <section class="relative py-16 bg-blueGray-200">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-24">
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div class="px-6 ">
                         <div class="flex flex-wrap justify-center ">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center ">
                                 <div class="relative ">
-                                    <img alt="..." src="{{$user->avatar_url}}"
+                                    <img alt="..." src="{{$user->avatar_url ?? ''}}"
                                         class="animate-pulse shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" />
                                 </div>
                             </div>
@@ -100,23 +100,23 @@
                         </div>
 
                         <div class="flex flex-wrap" id="wrapper-for-icons-amber">
-                            <div class="w-full pb-12">
-                                <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
-                                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                            <div class="w-full flex-wrap">
+                                <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row flex-md-column">
+                                    <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
                                         <a href="{{route('blog.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-600"
                                             data-tab-toggle="icon-tab-profile-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-profile-amber')">
                                             <i class="fas fa-space-shuttle text-base mr-1"></i> Blog
                                         </a>
                                     </li>
-                                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                                    <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
                                         <a href="{{route('portfolio.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
                                             data-tab-toggle="icon-tab-settings-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-settings-amber')">
                                             <i class="fas fa-cog text-base mr-1"></i> Portfolio
                                         </a>
                                     </li>
-                                    <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                                    <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
                                         <a href="/functions" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
                                             data-tab-toggle="icon-tab-options-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-options-amber')">
