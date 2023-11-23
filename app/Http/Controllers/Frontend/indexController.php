@@ -8,9 +8,7 @@ use App\Models\User;
 use App\Services\GitHubIntegration;
 use Illuminate\Http\Client\Request;
 
-use function PHPSTORM_META\type;
-
-class IndexController extends Controller
+class indexController extends Controller
 {
     private $index;
 

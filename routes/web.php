@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', 'Frontend\IndexController@index')->name('index');
+Route::get('/home', 'Frontend\indexController@index')->name('index');
 
-Route::get('/blog', 'Frontend\BlogController@index')->name('blog.index');
-Route::get('/blog/post/{id}', 'Frontend\BlogController@show')->whereNumber('id')->name('blog.show');
+Route::get('/blog', 'Frontend\blogController@index')->name('blog.index');
+Route::get('/blog/post/{id}', 'Frontend\blogController@show')->whereNumber('id')->name('blog.show');
 
-Route::get('/portfolio', 'Frontend\PortfolioController@index')->name('portfolio.index');
-Route::get('/portfolio/{id}', 'Frontend\PortfolioController@show')->name('portfolio.show');
+Route::get('/portfolio', 'Frontend\portfolioController@index')->name('portfolio.index');
+Route::get('/portfolio/{id}', 'Frontend\portfolioController@show')->name('portfolio.show');
 
 Route::get('/login', 'Auth\LoginController@index');
 Route::post('/login', 'Auth\LoginController@login')->name('login');

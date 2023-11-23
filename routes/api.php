@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::apiResource('portfolio', 'PortfolioController');
+// Route::apiResource('portfolio', 'portfolioController');

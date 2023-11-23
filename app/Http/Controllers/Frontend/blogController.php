@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 
-class BlogController extends Controller
+class blogController extends Controller
 {
     /**
      * Create a new controller instance.
