@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'Frontend\indexController@index')->name('index');
 
-Route::get('/blog', 'Frontend\blogController@index')->name('blog.index');
-Route::get('/blog/post/{id}', 'Frontend\blogController@show')->whereNumber('id')->name('blog.show');
-
 Route::get('/portfolio', 'Frontend\portfolioController@index')->name('portfolio.index');
 Route::get('/portfolio/{id}', 'Frontend\portfolioController@show')->name('portfolio.show');
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('assets/styles/tailwind.css')}}"/>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Matheus Andreatta | Blog</title>
+    <title>Andreatta Stack</title>
 </head>
 
 <body class="text-blueGray-700 antialiased">
@@ -102,13 +102,13 @@
                         <div class="flex flex-wrap" id="wrapper-for-icons-amber">
                             <div class="w-full flex-wrap">
                                 <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row flex-md-column">
-                                    <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
+                                    {{-- <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
                                         <a href="{{route('blog.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-600"
                                             data-tab-toggle="icon-tab-profile-amber"
                                             onclick="changeAtiveTab(event,'wrapper-for-icons-amber','amber','icon-tab-profile-amber')">
                                             <i class="fas fa-space-shuttle text-base mr-1"></i> Blog
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="mb-px mr-2 last:mr-0 flex-auto text-center">
                                         <a href="{{route('portfolio.index')}}" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-amber-600 bg-white"
                                             data-tab-toggle="icon-tab-settings-amber"

@@ -12,9 +12,6 @@
                     <li class="mr-2">
                     <a class="inline-block py-2 px-2 text-gray-600 no-underline hover:underline" href="{{route('index')}}">HOME</a>
                     </li>
-                    <li class="mr-2  ">
-                    <a class="inline-block text-gray-600 no-underline hover:text-gray-600 hover:underline py-2 px-2" href="{{route('blog.index')}}">BLOG</a>
-                    </li>
                     <li class="mr-2 bg-blueGray-200 rounded-lg">
                     <a class="inline-block text-gray-600 font-bold no-underline hover:text-gray-600 hover:underline py-2 px-2" href="{{route('portfolio.index')}}">PORTFOLIO</a>
                     </li>
@@ -44,6 +41,7 @@
           </svg>
         </div>
         <div class="container mx-auto px-4">
+        @foreach ($repositories as $repository)
           <div class="items-center flex flex-wrap">
             <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
               <img
@@ -59,11 +57,9 @@
                 >
                   <i class="fas fa-rocket text-xl"></i>
                 </div>
-                <h3 class="text-3xl font-semibold">A growing company</h3>
+                <h3 class="text-3xl font-semibold">{{$repository->name}}</h3>
                 <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  The extension comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go.
+                  {{$repository->description}}
                 </p>
                 <ul class="list-none mt-6">
                   <li class="py-2">
@@ -76,34 +72,8 @@
                       </div>
                       <div>
                         <h4 class="text-blueGray-500">
-                          Carefully crafted components
+                          Click <a href="{{$repository->html_url}}">HERE</a> to go to the repository
                         </h4>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="py-2">
-                    <div class="flex items-center">
-                      <div>
-                        <span
-                          class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
-                          ><i class="fab fa-html5"></i
-                        ></span>
-                      </div>
-                      <div>
-                        <h4 class="text-blueGray-500">Amazing page examples</h4>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="py-2">
-                    <div class="flex items-center">
-                      <div>
-                        <span
-                          class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3"
-                          ><i class="far fa-paper-plane"></i
-                        ></span>
-                      </div>
-                      <div>
-                        <h4 class="text-blueGray-500">Dynamic components</h4>
                       </div>
                     </div>
                   </li>
@@ -111,6 +81,7 @@
               </div>
             </div>
           </div>
+        @endforeach
         </div>
       </section>
 

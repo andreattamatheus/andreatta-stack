@@ -31,6 +31,7 @@ class indexController extends Controller
     {
         $github = new GitHubIntegration();
         $user = $github->getUser();
+        \Log::alert([$user]);
         return view('home', compact('user'));
     }
 

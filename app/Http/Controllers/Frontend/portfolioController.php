@@ -9,7 +9,10 @@ class portfolioController extends Controller
 {
     public function index()
     {
-        return view('portfolio.index');
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('GET', 'https://api.github.com/users/'.config('auth.github_username').'/repos');
+        $repositories = json_decode($response->getBody()->getContents());
+        return view('portfolio.index', compact('repositories'));
     }
 
     public function show()
