@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     private $name;
     private $email;
-    private $img_url;
+    private $imgUrl;
     private $password;
 
     protected $fillable = [
@@ -65,8 +65,7 @@ class User extends Authenticatable
 
     public function getFirstUser()
     {
-        $first = User::first();
-        return $first;
+        return User::first();
     }
 
 
@@ -137,7 +136,7 @@ class User extends Authenticatable
     /**
      * Get the value of img_url
      */
-    public function getImg_url()
+    public function getImgUrl()
     {
         return $this->img_url;
     }
@@ -147,9 +146,9 @@ class User extends Authenticatable
      *
      * @return  self
      */
-    private function setImg_url($img_url)
+    private function setImgUrl($img_url)
     {
-        $this->img_url = $img_url;
+        $this->imgUrl = $img_url;
 
         return $this;
     }
