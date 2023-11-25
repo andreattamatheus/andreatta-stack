@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\GitHubController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Frontend\indexController;
+use App\Http\Controllers\Frontend\portfolioController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,16 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', 'Frontend\indexController@index')->name('index');
+Route::get('/home', [indexController::class, 'index'])->name('index');
 
-Route::get('/portfolio', 'Frontend\portfolioController@index')->name('portfolio.index');
-Route::get('/portfolio/{id}', 'Frontend\portfolioController@show')->name('portfolio.show');
+Route::get('/portfolio', [portfolioController::class, 'index'])->name('portfolio.index');
+Route::get('/portfolio/{id}', [portfolioController::class, 'show'])->name('portfolio.show');
 
-Route::get('/login', 'Auth\LoginController@index');
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/app-ideas-collection', 'Frontend\AppIdeasCollectionController@index')->name('portfolio.index');
 
-Route::get('auth/github', 'Auth\GitHubController@gitRedirect')->name('github.login');
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('auth/github', [GitHubController::class, 'gitRedirect'])->name('github.login');
 Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);
 
 
