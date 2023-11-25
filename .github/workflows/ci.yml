@@ -43,6 +43,9 @@ jobs:
       - name: Build Assets with Laravel Mix
         run: npm run production
 
+      - name: Set Application Key for CI
+        run: php -r "file_put_contents('.env', 'APP_KEY=base64:hhF3GHvcxK/AnaaD25hl4Thj4bhG9Zw2CUP5V1Tzbi4=');"
+
       - name: Run Tests
         run: php artisan test
 
