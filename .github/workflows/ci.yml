@@ -43,6 +43,9 @@ jobs:
       - name: Build Assets with Laravel Mix
         run: npm run production
 
+      - name: Run Tests
+        run: php artisan test
+
       - name: Deploy to HostGator
         uses: easingthemes/ssh-deploy@v2
         with:
