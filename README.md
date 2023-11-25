@@ -8,14 +8,14 @@ Personal website where I use to test different techniques and ideas.
 
 ## Screenshots
 
-![App Screenshot](https://www.matheusandreatta.com/blog-matheus/img/posts/img-github.png)
+![App Screenshot](https://www.matheusandreatta.com/andreatta-stack/img/posts/img-github.png)
 
 
 ## Demo
 
 Insert gif or link to demo
 
-https://www.matheusandreatta.com/blog-matheus/home
+https://www.matheusandreatta.com/andreatta-stack/home
 ## LARAVEL Installation
 
 
