@@ -3,5 +3,5 @@
 it('has index page', function () {
     $response = $this->get('/home');
 
-    $response->assertStatus(500);
+    $response->assertStatus(200);
 });
