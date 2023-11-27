@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Services\GitHubIntegration;
 
 class portfolioController extends Controller
 {
+    private $github;
+
+    public function __construct(GitHubIntegration $github)
+    {
+        $this->github  = $github;
+    }
+
     public function index()
     {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'https://api.github.com/users/'.config('auth.github_username').'/repos');
-        $repositories = json_decode($response->getBody()->getContents());
+        $repositories = $this->github->getRepositories();
         return view('pages.portfolio.index', compact('repositories'));
     }
 

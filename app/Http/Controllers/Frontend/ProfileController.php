@@ -3,34 +3,32 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Index;
-use App\Models\User;
 use App\Services\GitHubIntegration;
 use Illuminate\Http\Client\Request;
 
 class ProfileController extends Controller
 {
-    private $index;
+    private $github;
 
     /**
-     * __construct
+     * ProfileController constructor.
      *
-     * @return void
+     * @param GitHubIntegration $github The GitHubIntegration instance.
      */
-    public function __construct(Index $index)
+    public function __construct(GitHubIntegration $github)
     {
-        $this->index = $index;
+        $this->github = $github;
+
     }
 
     /**
-     * index
+     * Display the profile index page.
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $github = new GitHubIntegration();
-        $user = $github->getUser();
+        $user = $this->github->getUser();
         return view('pages.profile.index', compact('user'));
     }
 
