@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Services\GitHubIntegration;
 use Illuminate\Http\Client\Request;
 
-class indexController extends Controller
+class ProfileController extends Controller
 {
     private $index;
 
@@ -31,7 +31,7 @@ class indexController extends Controller
     {
         $github = new GitHubIntegration();
         $user = $github->getUser();
-        return view('home', compact('user'));
+        return view('pages.profile.index', compact('user'));
     }
 
     /**

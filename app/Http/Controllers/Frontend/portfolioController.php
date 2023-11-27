@@ -12,7 +12,7 @@ class portfolioController extends Controller
         $client = new \GuzzleHttp\Client();
         $response = $client->request('GET', 'https://api.github.com/users/'.config('auth.github_username').'/repos');
         $repositories = json_decode($response->getBody()->getContents());
-        return view('portfolio.index', compact('repositories'));
+        return view('pages.portfolio.index', compact('repositories'));
     }
 
     public function show()

@@ -9,6 +9,6 @@ class AppIdeasCollectionController extends Controller
 {
     public function index()
     {
-        return view('app-ideas-collection.index');
+        return view('pages.app-ideas-collection.index');
     }
 }

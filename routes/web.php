@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Auth\GitHubController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Frontend\AppIdeasCollectionController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\indexController;
 use App\Http\Controllers\Frontend\portfolioController;
+use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,12 +22,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', [indexController::class, 'index'])->name('index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/portfolio', [portfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/portfolio/{id}', [portfolioController::class, 'show'])->name('portfolio.show');
 
-Route::get('/app-ideas-collection', 'Frontend\AppIdeasCollectionController@index')->name('portfolio.index');
+Route::get('/app-ideas-collection', [AppIdeasCollectionController::class, 'index'])->name('app.ideas.index');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login'])->name('login');
