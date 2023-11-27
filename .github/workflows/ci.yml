@@ -47,7 +47,7 @@ jobs:
         run: php -r "file_put_contents('.env', 'APP_KEY=base64:hhF3GHvcxK/AnaaD25hl4Thj4bhG9Zw2CUP5V1Tzbi4=');"
 
       - name: Run php artisan optimize
-        run: php artisan optmize
+        run: php artisan optimize
 
       - name: Run clear routes in artisan
         run: php artisan route:clear
