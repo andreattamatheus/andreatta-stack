@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="text-blueGray-700 antialiased">
+<body class="text-blueGray-700 antialiased bg-dark">
     <nav id="colorlib-main-nav" role="navigation">
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
         <div class="js-fullheight colorlib-table">
@@ -41,13 +41,13 @@
         </div>
     </nav>
 
-    <main id="colorlib-page" class="profile-page">
+    <main id="colorlib-page" class="profile-page bg-dark">
         <header class="bg-dark">
             <div class="container py-1">
                 <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle text-dark"><i></i></a>
             </div>
         </header>
-        <section class="relative pt-48 pb-4 bg-gray-200">
+        <section class="relative pt-48 pb-6 bg-dark">
             <div class="container mx-auto px-24">
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg ">
