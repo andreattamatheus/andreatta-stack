@@ -49,6 +49,9 @@ jobs:
       - name: Run php artisan optimize
         run: php artisan optimize
 
+      - name: Run php artisan config clear
+        run: php artisan config:clear
+
       - name: Run clear routes in artisan
         run: php artisan route:clear
 
