@@ -3,5 +3,5 @@
 it('has portfolio page', function () {
     $response = $this->get('/portfolio');
 
-    $response->assertStatus(500);
+    $response->assertStatus(200);
 });
