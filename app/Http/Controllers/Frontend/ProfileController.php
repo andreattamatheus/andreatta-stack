@@ -33,10 +33,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * update
+     * Update the user profile.
      *
-     * @param  mixed $request
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
      */
     public function update(Request $request)
     {
@@ -50,6 +50,5 @@ class ProfileController extends Controller
         } catch (\Throwable $th) {
             return false;
         };
-
     }
 }

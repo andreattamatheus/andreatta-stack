@@ -10,6 +10,11 @@ use Illuminate\Http\Client\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Display the home page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('home');

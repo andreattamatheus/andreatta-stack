@@ -1,7 +1,7 @@
 <?php
 
-it('has portfolio page', function () {
-    $response = $this->get('/portfolio');
+it('has repository page', function () {
+    $response = $this->get('/repository');
 
     $response->assertStatus(500);
 });

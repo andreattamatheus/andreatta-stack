@@ -27,9 +27,9 @@
                         <ul>
                             <li><a href="{{route('home.index')}}"><span>Home</span></a></li>
                             <li class="active"><a href="{{route('profile.index')}}"><span>Profile</span></a></li>
-                            <li><a href="{{route('portfolio.index')}}"><span>Portfolio</span></a></li>
+                            <li><a href="{{route('repository.index')}}"><span>Portfolio</span></a></li>
                             <li>
-                                <a href="{{route('app.ideas.index')}}">
+                                <a href="{{route('dashboard.index')}}">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>Challenge yourself!</span>
                                 </a>

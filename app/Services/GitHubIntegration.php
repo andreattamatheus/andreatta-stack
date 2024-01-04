@@ -3,15 +3,22 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redis;
 
 class GitHubIntegration
 {
+    /**
+     * The HTTP client for making requests to the GitHub API.
+     *
+     * @var Client
+     */
     private $client;
 
+    /**
+     * Create a new GitHubIntegration instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->client = new Client([
@@ -22,18 +29,25 @@ class GitHubIntegration
         ]);
     }
 
+    /**
+     * Retrieves the user profile from GitHub.
+     *
+     * @return object The user profile object.
+     */
     public function getUser(): object
     {
         try {
-
+            // Check if the user profile is cached
             $user = Cache::get('user:admin:profile');
             if (!$user) {
+                // Fetch the user profile from GitHub API
                 $getUserFromGithub = $this->client->request(
                     'GET',
                     'https://api.github.com/users/' . config('auth.github_username')
                 );
 
                 if ($getUserFromGithub->getStatusCode() == 200) {
+                    // Parse the response and cache the user profile
                     $user = json_decode($getUserFromGithub->getBody()->getContents());
                     Cache::put('user:admin:profile', [
                         'name' => $user->name,
@@ -49,23 +63,31 @@ class GitHubIntegration
             }
             return (object) $user;
         } catch (\Throwable $th) {
+            // Return error response if an exception occurs
             return response()->json(['error' => $th->getMessage()], 500);
         }
     }
 
-    public function getRepositories(): object
+    /**
+     * Retrieves the repositories for a given user from the GitHub API.
+     *
+     * @param string|null $userName The username of the user. If not provided, the default username from the configuration will be used.
+     * @return object The repositories data as an object.
+     */
+    public function getRepositories(string $userName = null): object
     {
         try {
-            $repositories = Cache::get('user:admin:portfolio');
+            $repositories = Cache::get('user:admin:repository');
+            $userName = $userName ?? config('auth.github_username');
             if (!$repositories) {
                 $response = $this->client->request(
                     'GET',
-                    'https://api.github.com/users/' . config('auth.github_username') . '/repos'
+                    'https://api.github.com/users/' . $userName . '/repos'
                 );
                 if ($response->getStatusCode() == 200) {
                     $repositoriesData = json_decode($response->getBody()->getContents());
                     foreach ($repositoriesData as $key => $repo) {
-                        Cache::put('user:admin:portfolio'. $key, $repo);
+                        Cache::put('user:admin:repository' . $key, $repo);
                     }
                     $repositories =  $repositoriesData;
                 }
@@ -75,63 +97,4 @@ class GitHubIntegration
             return response()->json(['error' => $th->getMessage()], 500);
         }
     }
-
-    // public function getUser(): object
-    // {
-    //     try {
-
-    //         $user = Redis::hgetall('user:admin:profile');
-    //         if (!$user) {
-    //             $getUserFromGithub = $this->client->request(
-    //                 'GET',
-    //                 'https://api.github.com/users/' . config('auth.github_username')
-    //             );
-
-    //             if ($getUserFromGithub->getStatusCode() == 200) {
-    //                 $user = json_decode($getUserFromGithub->getBody()->getContents());
-    //                 Redis::hmset('user:admin:profile', [
-    //                     'name' => $user->name,
-    //                     'followers' => (string) $user->followers,
-    //                     'following' => (string) $user->following,
-    //                     'avatar_url' => $user->avatar_url,
-    //                     'html_url' => $user->html_url,
-    //                     'location' => $user->location,
-    //                     'company' => $user->company,
-    //                     'bio' => $user->bio,
-    //                 ]);
-    //             }
-    //         }
-    //         return (object) $user;
-    //     } catch (\Throwable $th) {
-    //         return response()->json(['error' => $th->getMessage()], 500);
-    //     }
-    // }
-
-    // public function getRepositories(): object
-    // {
-    //     try {
-    //         $repositories = Redis::hgetall('user:admin:portfolio');
-    //         if (!$repositories) {
-    //             $response = $this->client->request(
-    //                 'GET',
-    //                 'https://api.github.com/users/' . config('auth.github_username') . '/repos'
-    //             );
-    //             if ($response->getStatusCode() == 200) {
-    //                 $repositoriesData = json_decode($response->getBody()->getContents());
-    //                 foreach ($repositoriesData as $key => $repo) {
-    //                     Redis::hmset('user:admin:portfolio:'. $key, [
-    //                         'name' => $repo->name,
-    //                         'description' => $repo->description,
-    //                         'html_url' => $repo->html_url,
-    //                         'topics' => implode(", ", $repo->topics)
-    //                     ]);
-    //                 }
-    //                 $repositories =  $repositoriesData;
-    //             }
-    //         }
-    //         return (object) $repositories;
-    //     } catch (\Throwable $th) {
-    //         return response()->json(['error' => $th->getMessage()], 500);
-    //     }
-    // }
 }

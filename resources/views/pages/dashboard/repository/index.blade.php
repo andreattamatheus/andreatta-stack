@@ -2,7 +2,15 @@
 @extends('layouts.site-layout')
 
 @section('content')
-      <section >
+<section >
+        <div class="mx-auto px-4 my-4 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+                <form action="{{route('repository.search')}}" method="POST">
+                    @csrf
+                    <input type="text" class="form-control" name="username" placeholder="Search for your repositories...">
+                </form>
+            </div>
+        </div>
         <div class="mx-auto px-4 my-4">
             <div class="row">
                 @foreach ($repositories as $repository)

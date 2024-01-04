@@ -3,12 +3,11 @@
 use App\Http\Controllers\Auth\GitHubController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\AppIdeasCollectionController;
+use App\Http\Controllers\Frontend\AppIdeias\UrlShortenerController;
+use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\indexController;
-use App\Http\Controllers\Frontend\portfolioController;
 use App\Http\Controllers\Frontend\ProfileController;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Frontend\RepositoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +23,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/portfolio', [portfolioController::class, 'index'])->name('portfolio.index');
-Route::get('/portfolio/{id}', [portfolioController::class, 'show'])->name('portfolio.show');
+Route::get('/repository', [RepositoryController::class, 'index'])->name('repository.index');
+Route::post('/repository', [RepositoryController::class, 'index'])->name('repository.search');
 
-Route::get('/app-ideas-collection', [AppIdeasCollectionController::class, 'index'])->name('app.ideas.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+Route::group(['prefix' => '/app-ideas'], function () {
+    Route::get('/url-shortener', [UrlShortenerController::class, 'index'])->name('url-shortener.index');
+});
+
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 

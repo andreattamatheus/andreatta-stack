@@ -50,12 +50,6 @@
         data-scroll="true">
         <div class="container-fluid py-1 px-3">
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group input-group-outline">
-                        <label class="form-label">Type here...</label>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -88,7 +82,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="{{route('home.index')}}">
+                    <a class="nav-link text-white bg-gradient-primary" href="{{route('dashboard.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -96,19 +90,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('portfolio.index')}}">
+                    <a class="nav-link text-white" href="{{route('repository.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">Portfolio</span>
+                        <span class="nav-link-text ms-1">Github Repositories</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" href="{{route('app.ideas.index')}}">
+                    <a class="nav-link text-white" href="{{route('url-shortener.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">App Ideas Collection</span>
+                        <span class="nav-link-text ms-1">URL Shortener</span>
                     </a>
                 </li>
             </ul>
