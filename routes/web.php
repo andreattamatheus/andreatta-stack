@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\GitHubController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\AppIdeasCollectionController;
+use App\Http\Controllers\Frontend\AppIdeias\PodcastLibraryController;
 use App\Http\Controllers\Frontend\AppIdeias\UrlShortenerController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -30,6 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::group(['prefix' => '/app-ideas'], function () {
     Route::get('/url-shortener', [UrlShortenerController::class, 'index'])->name('url-shortener.index');
+    Route::get('/podcast-library', [PodcastLibraryController::class, 'index'])->name('podcast-library.index');
 });
 
 

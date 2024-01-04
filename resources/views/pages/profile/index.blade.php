@@ -25,13 +25,12 @@
                     <div class="col-md-12 text-center">
                         <h1 class="mb-4"><a href="#" class="logo">CHOOSE AN OPTION</a></h1>
                         <ul>
-                            <li><a href="{{route('home.index')}}"><span>Home</span></a></li>
-                            <li class="active"><a href="{{route('profile.index')}}"><span>Profile</span></a></li>
-                            <li><a href="{{route('repository.index')}}"><span>Portfolio</span></a></li>
+                            <li class="active"><a href="#"><span>Home</span></a></li>
+                            <li><a href="{{route('profile.index')}}"><span>Profile</span></a></li>
                             <li>
                                 <a href="{{route('dashboard.index')}}">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                    <span>Challenge yourself!</span>
+                                    <span>Dashboard</span>
                                 </a>
                             </li>
                         </ul>

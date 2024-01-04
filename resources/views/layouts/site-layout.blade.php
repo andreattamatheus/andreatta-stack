@@ -71,8 +71,7 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
-            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
-                target="_blank">
+            <a class="navbar-brand m-0" href="{{route('home.index')}}">
                 <img src="{{asset('assets/styles/svg/code-brackets-svgrepo-com.svg')}}" class="navbar-brand-img h-100"
                     alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Andreatta Stack</span>
@@ -92,7 +91,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{route('repository.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">bug_report</i>
                         </div>
                         <span class="nav-link-text ms-1">Github Repositories</span>
                     </a>
@@ -100,9 +99,25 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{route('url-shortener.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="material-icons opacity-10">dashboard</i>
+                            <i class="material-icons opacity-10">short_text</i>
                         </div>
                         <span class="nav-link-text ms-1">URL Shortener</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{route('podcast-library.index')}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">library_music</i>
+                        </div>
+                        <span class="nav-link-text ms-1">My Podcast Library</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">account_balance</i>
+                        </div>
+                        <span class="nav-link-text ms-1">fincheck</span>
                     </a>
                 </li>
             </ul>
