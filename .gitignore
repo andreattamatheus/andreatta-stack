@@ -18,3 +18,4 @@ yarn-error.log
 
 /config/services.php
 /docker-compose/mysql
+material-dashboard-master
