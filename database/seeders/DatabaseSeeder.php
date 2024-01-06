@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\UrlShortener;
 use Database\Factories\IndexFactory;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersSeeder::class);
         Post::factory(10)->create();
+        UrlShortener::factory(10)->create();
         $this->call(IndexSeeder::class);
 
     }

@@ -27,6 +27,8 @@ services:
       MYSQL_USER: ${DB_USERNAME}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    ports:
+      - 3309:3306
     volumes:
         - ./docker-compose/mysql:/var/lib/mysql
     networks:

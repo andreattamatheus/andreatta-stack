@@ -31,8 +31,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::group(['prefix' => '/app-ideas'], function () {
     Route::get('/url-shortener', [UrlShortenerController::class, 'index'])->name('url-shortener.index');
+    Route::post('/url-shortener', [UrlShortenerController::class, 'store'])->name('url-shortener.store');
+    Route::delete('/url-shortener', [UrlShortenerController::class, 'destroy'])->name('url-shortener.destroy');
     Route::get('/podcast-library', [PodcastLibraryController::class, 'index'])->name('podcast-library.index');
 });
+Route::get('/redirect/{shortUrl}', [UrlShortenerController::class, 'redirect'])->name('url-shortener.redirect');
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
@@ -43,6 +46,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('auth/github', [GitHubController::class, 'gitRedirect'])->name('github.login');
 Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);
+
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -69,4 +73,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::fallback( function(){
     return view('pages.404-page');
-});
+})->name('404-page');
