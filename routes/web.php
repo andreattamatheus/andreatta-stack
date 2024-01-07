@@ -64,5 +64,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::fallback(function () {
-    return view('pages.404-page');
+    return response()->view('pages.404-page', [], 404);
 })->name('404-page');
