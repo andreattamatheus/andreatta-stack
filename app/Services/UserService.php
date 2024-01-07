@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\User;
@@ -12,7 +13,7 @@ class UserService
         $imageWithExt = $request->file('image')->getClientOriginalName();
         $getFilename = pathinfo($imageWithExt, PATHINFO_FILENAME);
         $getExtension = $request->file('image')->getClientOriginalExtension();
-        $fileNameToStore = $getFilename. '_'. time().'.'.$getExtension;
+        $fileNameToStore = $getFilename . '_' . time() . '.' . $getExtension;
         $path = $request->file('image')->move('assets/img/posts', $fileNameToStore);
         $user = $this->updateUser($request, $path);
         return $user;
@@ -40,5 +41,4 @@ class UserService
         $user->delete();
         return true;
     }
-
 }

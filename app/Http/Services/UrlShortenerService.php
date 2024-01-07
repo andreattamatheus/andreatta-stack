@@ -6,7 +6,6 @@ use App\Http\Repositories\UrlShortenerRepository;
 
 class UrlShortenerService
 {
-
     private $urlShortenerRepository;
 
     public function __construct(UrlShortenerRepository $urlShortenerRepository)
@@ -20,7 +19,7 @@ class UrlShortenerService
      * @param UrlShortenerRequest $request The request object containing the URL.
      * @return void
      */
-    public function store( $request)
+    public function store($request)
     {
         $url = $request->input('url');
         $shortUrl = $this->makeShortUrl();
@@ -34,7 +33,7 @@ class UrlShortenerService
      *
      * @return string The generated short URL.
      */
-    public function makeShortUrl() : string
+    public function makeShortUrl(): string
     {
         $timestamp = time();
         $randomString = bin2hex(random_bytes(4));
@@ -44,5 +43,4 @@ class UrlShortenerService
         $shortUrl = substr($shortUrl, 0, 15);
         return $shortUrl;
     }
-
 }

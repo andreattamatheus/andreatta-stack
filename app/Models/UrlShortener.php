@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UrlShortener extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'url',
@@ -34,5 +35,4 @@ class UrlShortener extends Model
     {
         return config('app.url') . '/redirect/' . $value;
     }
-
 }

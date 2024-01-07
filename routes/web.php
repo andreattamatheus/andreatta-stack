@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\GitHubController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Frontend\AppIdeasCollectionController;
 use App\Http\Controllers\Frontend\AppIdeias\PodcastLibraryController;
 use App\Http\Controllers\Frontend\AppIdeias\UrlShortenerController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -52,25 +53,16 @@ Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => '/admin'], function () {
-        Route::get('', 'Admin\adminController@index')->name('admin.index');
+        Route::get('', [AdminController::class, 'index'])->name('admin.index');
     });
 
     Route::group(['prefix' => '/users'], function () {
-        Route::get('', 'Admin\userController@index')->name('user.index');
-        Route::put('', 'Admin\userController@update')->name('user.update');
-    });
-
-    Route::group(['prefix' => '/posts'], function () {
-        Route::get('/', 'Admin\postController@index')->name('admin.posts.index');
-        Route::get('/create', 'Admin\postController@create')->name('post.create');
-        Route::get('/{id}/edit', 'Admin\postController@edit')->whereNumber('id')->name('post.edit');
-        Route::post('/create', 'Admin\postController@store')->name('post.store');
-        Route::put('/{id}', 'Admin\postController@update')->whereNumber('id')->name('post.update');
-        Route::delete('/{id}', 'Admin\postController@destroy')->whereNumber('id')->name('post.destroy');
+        Route::get('', [UserController::class, 'index'])->name('user.index');
+        Route::put('', [UserController::class, 'update'])->name('user.update');
     });
 });
 
 
-Route::fallback( function(){
+Route::fallback(function () {
     return view('pages.404-page');
 })->name('404-page');

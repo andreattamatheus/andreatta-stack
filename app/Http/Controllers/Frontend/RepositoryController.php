@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\GitHubIntegration;
 
-
 class RepositoryController extends Controller
 {
     private $github;
@@ -34,5 +33,4 @@ class RepositoryController extends Controller
         $repositories = $this->github->getRepositories($userName);
         return view('pages.dashboard.repository.index', compact('repositories'));
     }
-
 }

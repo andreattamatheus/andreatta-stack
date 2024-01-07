@@ -20,6 +20,5 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         UrlShortener::factory(10)->create();
         $this->call(IndexSeeder::class);
-
     }
 }

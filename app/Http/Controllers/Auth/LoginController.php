@@ -28,7 +28,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
-        if(!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials)) {
             return redirect()->route('login')->withErrors('error', 'Credenciais incorretas.');
         }
         $request->session()->regenerate();

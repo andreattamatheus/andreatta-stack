@@ -18,7 +18,6 @@ class ProfileController extends Controller
     public function __construct(GitHubIntegration $github)
     {
         $this->github = $github;
-
     }
 
     /**

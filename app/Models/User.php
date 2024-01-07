@@ -10,7 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -55,7 +57,7 @@ class User extends Authenticatable
     public function setUser(string $name, string $email, string $path)
     {
         $this->setName($name);
-        if(!$this->setEmail($email)){
+        if (!$this->setEmail($email)) {
             return false;
         }
         $this->setImg_url($path);

@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class modalDelete extends Component
 {
-
     public $id;
 
     /**

@@ -21,15 +21,15 @@ class GitHubController extends Controller
         try {
             $user = Socialite::driver('github')->user();
             $searchUser = User::where('github_id', $user->id)->first();
-            if($searchUser){
+            if ($searchUser) {
                 Auth::login($searchUser);
                 return redirect('/admin');
             } else {
                 $gitUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'github_id'=> $user->id,
-                    'auth_type'=> 'github',
+                    'github_id' => $user->id,
+                    'auth_type' => 'github',
                     'password' => encrypt('gitpwd059')
                 ]);
                 Auth::login($gitUser);

@@ -71,7 +71,8 @@ class GitHubIntegration
     /**
      * Retrieves the repositories for a given user from the GitHub API.
      *
-     * @param string|null $userName The username of the user. If not provided, the default username from the configuration will be used.
+     * @param string|null $userName The username of the user. If not provided,
+     * the default username from the configuration will be used.
      * @return object The repositories data as an object.
      */
     public function getRepositories(string $userName = null): object

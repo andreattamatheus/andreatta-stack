@@ -34,5 +34,4 @@ class Post extends Model
     // {
     //   $this->attributes['created_at'] = Carbon::parse($createdAt)->format('d/m/Y');
     // }
-
 }

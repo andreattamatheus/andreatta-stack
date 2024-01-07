@@ -20,5 +20,6 @@ it('has a img_url attribute', function () {
     $user = new User([
         'img_url' => 'https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png',
     ]);
-    expect($user->img_url)->toBe('https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png');
+    expect($user->img_url)
+        ->toBe('https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png');
 });

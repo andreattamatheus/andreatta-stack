@@ -21,8 +21,7 @@ class UrlShortenerController extends Controller
     public function __construct(
         UrlShortenerService $urlShortenerService,
         UrlShortenerRepository $urlShortenerRepository
-    )
-    {
+    ) {
         $this->urlShortenerService = $urlShortenerService;
         $this->urlShortenerRepository = $urlShortenerRepository;
     }
