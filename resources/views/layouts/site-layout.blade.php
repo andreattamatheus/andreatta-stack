@@ -82,7 +82,8 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white bg-gradient-primary" href="{{route('dashboard.index')}}">
+                    <a class="nav-link text-white {{ request()->routeIs('dashboard.index') ? 'bg-gradient-primary' : '' }}"
+                        href="{{ route('dashboard.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">dashboard</i>
                         </div>
@@ -90,7 +91,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('repository.index')}}">
+                    <a class="nav-link text-white {{ request()->routeIs('repository.index') ? 'bg-gradient-primary' : '' }}"
+                        href="{{ route('repository.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">bug_report</i>
                         </div>
@@ -98,7 +100,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('url-shortener.index')}}">
+                    <a class="nav-link text-white {{ request()->routeIs('url-shortener.index') ? 'bg-gradient-primary' : '' }}"
+                        href="{{ route('url-shortener.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">short_text</i>
                         </div>
@@ -106,7 +109,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('podcast-library.index')}}">
+                    <a class="nav-link text-white {{ request()->routeIs('podcast-library.index') ? 'bg-gradient-primary' : '' }}"
+                        href="{{ route('podcast-library.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">library_music</i>
                         </div>
@@ -114,7 +118,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
+                    <a class="nav-link text-white {{ request()->is('fincheck*') ? 'bg-gradient-primary' : '' }}"
+                        href="#">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">account_balance</i>
                         </div>
