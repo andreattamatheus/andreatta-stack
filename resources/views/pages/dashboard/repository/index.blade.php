@@ -9,12 +9,12 @@
         </div>
         <div class="card col-xl-6 col-md-12">
             <div class="card-body ">
-                <h4>Search for repositories:</h4>
+                <h4>Search for your repositories:</h4>
                 <div class="input-group input-group-outline">
                     <form role="form" class="text-start" action="{{route('repository.search')}}" method="POST">
                         @csrf
                         <input type="text" class="form-control" name="username"
-                            placeholder="Search for your repositories...">
+                            placeholder="Type your username...">
                     </form>
                 </div>
             </div>

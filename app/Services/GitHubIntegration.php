@@ -43,7 +43,7 @@ class GitHubIntegration
                 // Fetch the user profile from GitHub API
                 $getUserFromGithub = $this->client->request(
                     'GET',
-                    'https://api.github.com/users/' . config('auth.github_username')
+                    'https://api.github.com/user'
                 );
 
                 if ($getUserFromGithub->getStatusCode() == 200) {
