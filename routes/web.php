@@ -1,15 +1,11 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\GitHubController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\AppIdeias\PodcastLibraryController;
 use App\Http\Controllers\Frontend\AppIdeias\UrlShortenerController;
 use App\Http\Controllers\Frontend\AppIdeias\RepositoryController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,21 +34,11 @@ Route::group(['prefix' => '/app-ideas'], function () {
 
 Route::get('/redirect/{shortUrl}', [UrlShortenerController::class, 'redirect'])->name('url-shortener.redirect');
 
-
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('auth/github', [GitHubController::class, 'gitRedirect'])->name('github.login');
-Route::get('auth/github/callback', [GitHubController::class, 'gitCallback']);
-
 Route::group(['middleware' => 'auth'], function () {
-
     Route::group(['prefix' => '/admin'], function () {
         Route::get('', [AdminController::class, 'index'])->name('admin.index');
     });
 });
-
 
 Route::fallback(function () {
     return response()->view('pages.404-page', [], 404);
