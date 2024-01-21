@@ -30,7 +30,6 @@
                             <h1 class="mb-4"><a href="#" class="logo">CHOOSE AN OPTION</a></h1>
                             <ul>
                                 <li class="active"><a href="#"><span>Home</span></a></li>
-                                <li><a href="{{route('profile.index')}}"><span>Profile</span></a></li>
                                 <li>
                                     <a href="{{route('dashboard.index')}}">
                                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
