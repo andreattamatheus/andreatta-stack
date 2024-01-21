@@ -7,7 +7,7 @@ use App\Models\UrlShortener;
 
 class UrlShortenerRepository implements UrlShortenerInterface
 {
-    private $model =  UrlShortener::class;
+    private $model = UrlShortener::class;
 
     public function getAll()
     {
@@ -24,7 +24,7 @@ class UrlShortenerRepository implements UrlShortenerInterface
         $this->model::create([
             'url' => $url,
             'short_url' => $shortUrl,
-            'user_id' => $userId
+            'user_id' => $userId,
         ]);
     }
 

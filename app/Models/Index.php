@@ -10,17 +10,19 @@ class Index extends Model
     use HasFactory;
 
     private $id;
-    private $title;
-    private $subtitle;
-    private $description;
 
+    private $title;
+
+    private $subtitle;
+
+    private $description;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id', 'title','img_url', 'subtitle', 'description'];
+    protected $fillable = ['id', 'title', 'img_url', 'subtitle', 'description'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -28,7 +30,6 @@ class Index extends Model
      * @var array
      */
     protected $hidden = [];
-
 
     /**
      * Get the value of id
@@ -41,7 +42,7 @@ class Index extends Model
     /**
      * Set the value of id
      *
-     * @return  self
+     * @return self
      */
     public function setId($id)
     {
@@ -61,7 +62,7 @@ class Index extends Model
     /**
      * Set the value of title
      *
-     * @return  self
+     * @return self
      */
     public function setTitle($title)
     {
@@ -81,7 +82,7 @@ class Index extends Model
     /**
      * Set the value of subtitle
      *
-     * @return  self
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
@@ -101,11 +102,12 @@ class Index extends Model
     /**
      * Set the value of description
      *
-     * @return  self
+     * @return self
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 }

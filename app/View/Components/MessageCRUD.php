@@ -6,14 +6,14 @@ use Illuminate\View\Component;
 
 class MessageCRUD extends Component
 {
-        /**
+    /**
      * The alert message.
      *
      * @var string
      */
     public $message;
 
-        /**
+    /**
      * The alert type.
      *
      * @var string

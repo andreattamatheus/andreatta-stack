@@ -16,7 +16,7 @@ class UrlShortener extends Model
         'short_url',
         'clicks',
         'user_id',
-        'active'
+        'active',
     ];
 
     public function user()
@@ -24,15 +24,15 @@ class UrlShortener extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function setShortUrl($value)
     {
         $this->attributes['short_url'] = strtolower($value);
+
         return $this;
     }
 
     public function getShortUrlAttribute($value)
     {
-        return config('app.url') . '/redirect/' . $value;
+        return config('app.url').'/redirect/'.$value;
     }
 }

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Frontend\AppIdeias;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\UrlShortenerRepository;
 use App\Http\Requests\UrlShortenerRequest;
 use App\Http\Services\UrlShortenerService;
-use App\Http\Repositories\UrlShortenerRepository;
 use Illuminate\Http\Request;
 
 class UrlShortenerController extends Controller
 {
     private $urlShortenerService;
+
     private $urlShortenerRepository;
 
     /**
@@ -34,23 +35,25 @@ class UrlShortenerController extends Controller
     public function index()
     {
         $urls = $this->urlShortenerRepository->getAll();
+
         return view('pages.dashboard.url-shortener.index', compact('urls'));
     }
 
     /**
      * Store a new URL in the database and generate a short URL.
      *
-     * @param UrlShortenerRequest $request The request object containing the URL.
+     * @param  UrlShortenerRequest  $request  The request object containing the URL.
      * @return void
      */
-
     public function store(UrlShortenerRequest $request)
     {
         try {
             $this->urlShortenerService->store($request);
+
             return redirect()->route('url-shortener.index')->with('success', 'URL created successfully.');
         } catch (\Exception $e) {
             \Log::alert($e->getMessage());
+
             return redirect()->route('url-shortener.index')->with('error', 'An error occurred while creating the URL.');
         }
     }
@@ -59,9 +62,11 @@ class UrlShortenerController extends Controller
     {
         try {
             $this->urlShortenerRepository->destroy($request->input('id'));
+
             return redirect()->route('url-shortener.index')->with('success', 'URL deleted successfully.');
         } catch (\Exception $e) {
             \Log::alert($e->getMessage());
+
             return redirect()->route('url-shortener.index')->with('error', 'An error occurred while deleting the URL.');
         }
     }
@@ -69,15 +74,16 @@ class UrlShortenerController extends Controller
     /**
      * Redirect the user to the original URL.
      *
-     * @param string $shortUrl The short URL.
+     * @param  string  $shortUrl  The short URL.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function redirect(string $shortUrl)
     {
         $getUrl = $this->urlShortenerRepository->getByShortUrl($shortUrl);
-        if (!$getUrl) {
+        if (! $getUrl) {
             return view('pages.404-page');
         }
+
         return redirect()->away($getUrl->url);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Services\GitHubIntegration;
 
-
 class DashboardController extends Controller
 {
     private $github;
@@ -13,7 +12,7 @@ class DashboardController extends Controller
     /**
      * ProfileController constructor.
      *
-     * @param GitHubIntegration $github The GitHubIntegration instance.
+     * @param  GitHubIntegration  $github  The GitHubIntegration instance.
      */
     public function __construct(GitHubIntegration $github)
     {
@@ -28,7 +27,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = $this->github->getUser();
+
         return view('pages.dashboard.index', compact('user'));
     }
-
 }

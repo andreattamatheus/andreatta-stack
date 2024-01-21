@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,10 +18,12 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-
     private $name;
+
     private $email;
+
     private $imgUrl;
+
     private $password;
 
     protected $fillable = [
@@ -31,7 +32,7 @@ class User extends Authenticatable
         'password',
         'github_id',
         'auth_type',
-        'img_url'
+        'img_url',
     ];
 
     /**
@@ -53,28 +54,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function setUser(string $name, string $email, string $path)
     {
         $this->setName($name);
-        if (!$this->setEmail($email)) {
+        if (! $this->setEmail($email)) {
             return false;
         }
         $this->setImg_url($path);
+
         return true;
     }
-
 
     public function getFirstUser()
     {
         return User::first();
     }
 
-
     /**
      * Get the attributes that are mass assignable.
      *
-     * @return  string[]
+     * @return string[]
      */
     public function getName()
     {
@@ -85,8 +84,7 @@ class User extends Authenticatable
      * Set the attributes that are mass assignable.
      *
      * @param  string[]  $name  The attributes that are mass assignable.
-     *
-     * @return  self
+     * @return self
      */
     private function setName(string $name)
     {
@@ -106,7 +104,7 @@ class User extends Authenticatable
     /**
      * Set the value of email
      *
-     * @return  self
+     * @return self
      */
     private function setEmail($email)
     {
@@ -126,7 +124,7 @@ class User extends Authenticatable
     /**
      * Set the value of password
      *
-     * @return  self
+     * @return self
      */
     private function setPassword($password)
     {
@@ -146,7 +144,7 @@ class User extends Authenticatable
     /**
      * Set the value of img_url
      *
-     * @return  self
+     * @return self
      */
     private function setImgUrl($img_url)
     {

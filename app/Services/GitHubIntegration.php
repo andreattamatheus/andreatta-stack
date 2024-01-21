@@ -23,7 +23,7 @@ class GitHubIntegration
     {
         $this->client = new Client([
             'headers' => [
-                'Authorization' => 'token ' . config('auth.github_token'),
+                'Authorization' => 'token '.config('auth.github_token'),
                 'Accept' => 'application/vnd.github.v3+json',
             ],
         ]);
@@ -39,7 +39,7 @@ class GitHubIntegration
         try {
             // Check if the user profile is cached
             $user = Cache::get('user:admin:profile');
-            if (!$user) {
+            if (! $user) {
                 // Fetch the user profile from GitHub API
                 $getUserFromGithub = $this->client->request(
                     'GET',
@@ -61,6 +61,7 @@ class GitHubIntegration
                     ], 60 * 60 * 24);
                 }
             }
+
             return (object) $user;
         } catch (\Throwable $th) {
             // Return error response if an exception occurs
@@ -71,28 +72,29 @@ class GitHubIntegration
     /**
      * Retrieves the repositories for a given user from the GitHub API.
      *
-     * @param string|null $userName The username of the user. If not provided,
-     * the default username from the configuration will be used.
+     * @param  string|null  $userName  The username of the user. If not provided,
+     *                                 the default username from the configuration will be used.
      * @return object The repositories data as an object.
      */
-    public function getRepositories(string $userName = null): object
+    public function getRepositories(?string $userName = null): object
     {
         try {
             $repositories = Cache::get('user:admin:repository');
             $userName = $userName ?? config('auth.github_username');
-            if (!$repositories) {
+            if (! $repositories) {
                 $response = $this->client->request(
                     'GET',
-                    'https://api.github.com/users/' . $userName . '/repos'
+                    'https://api.github.com/users/'.$userName.'/repos'
                 );
                 if ($response->getStatusCode() == 200) {
                     $repositoriesData = json_decode($response->getBody()->getContents());
                     foreach ($repositoriesData as $key => $repo) {
-                        Cache::put('user:admin:repository' . $key, $repo);
+                        Cache::put('user:admin:repository'.$key, $repo);
                     }
-                    $repositories =  $repositoriesData;
+                    $repositories = $repositoriesData;
                 }
             }
+
             return (object) $repositories;
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 500);

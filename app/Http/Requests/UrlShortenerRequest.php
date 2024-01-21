@@ -24,7 +24,7 @@ class UrlShortenerRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url'
+            'url' => 'required|url',
         ];
     }
 }

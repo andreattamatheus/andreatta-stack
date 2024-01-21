@@ -16,7 +16,7 @@ class UrlShortenerService
     /**
      * Create a new URL in the database.
      *
-     * @param UrlShortenerRequest $request The request object containing the URL.
+     * @param  UrlShortenerRequest  $request  The request object containing the URL.
      * @return void
      */
     public function store($request)
@@ -27,7 +27,6 @@ class UrlShortenerService
         $this->urlShortenerRepository->store($url, $shortUrl, $userId);
     }
 
-
     /**
      * Generates a short URL based on the current timestamp and a random string.
      *
@@ -37,10 +36,11 @@ class UrlShortenerService
     {
         $timestamp = time();
         $randomString = bin2hex(random_bytes(4));
-        $uniqueUrl = $timestamp . $randomString;
+        $uniqueUrl = $timestamp.$randomString;
         $shortUrl = base_convert($uniqueUrl, 10, 36);
         $shortUrl = str_replace(['a', 'e', 'i', 'o', 'u'], '', $shortUrl);
         $shortUrl = substr($shortUrl, 0, 15);
+
         return $shortUrl;
     }
 }

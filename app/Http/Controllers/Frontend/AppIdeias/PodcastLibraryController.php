@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend\AppIdeias;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class PodcastLibraryController extends Controller
 {
