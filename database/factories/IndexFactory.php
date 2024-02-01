@@ -19,14 +19,13 @@ class IndexFactory extends Factory
      *
      * @return array
      */
-
     public function definition()
     {
         return [
             'title' => 'Matheus Andreatta',
             'subtitle' => 'Desenvolvedor Web',
             'description' => 'Já trabalhei de tudo um pouco. Na maioria não deu certo,
-                as que deram, são as minhas profissões hoje!'
+                as que deram, são as minhas profissões hoje!',
         ];
     }
 }

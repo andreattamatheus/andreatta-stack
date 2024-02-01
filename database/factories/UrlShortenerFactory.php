@@ -2,10 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\UrlShortener;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Auth;
 
 class UrlShortenerFactory extends Factory
 {
@@ -23,14 +21,12 @@ class UrlShortenerFactory extends Factory
      */
     protected $model = UrlShortener::class;
 
-
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
     protected $primaryKey = 'id';
-
 
     /**
      * Define the model's default state.
@@ -43,7 +39,7 @@ class UrlShortenerFactory extends Factory
             'url' => $this->faker->url(),
             'short_url' => $this->faker->url(),
             'clicks' => $this->faker->numberBetween(0, 100),
-            'user_id' => 1
+            'user_id' => 1,
         ];
     }
 }

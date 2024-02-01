@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Auth;
 
 class PostFactory extends Factory
 {
@@ -22,14 +21,12 @@ class PostFactory extends Factory
      */
     protected $model = Post::class;
 
-
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
     protected $primaryKey = 'id';
-
 
     /**
      * Define the model's default state.
@@ -42,7 +39,7 @@ class PostFactory extends Factory
             'title' => $this->faker->word(),
             'user_id' => 1,
             'content' => $this->faker->text(400),
-            'theme' => $this->faker->word()
+            'theme' => $this->faker->word(),
         ];
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Post;
 use App\Models\UrlShortener;
-use Database\Factories\IndexFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
