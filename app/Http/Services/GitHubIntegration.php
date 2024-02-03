@@ -97,7 +97,8 @@ class GitHubIntegration
 
             return (object) $repositories;
         } catch (\Throwable $th) {
-            return response()->json(['error' => $th->getMessage()], 500);
+            \Log::error($th->getMessage());
+            return (object) [];
         }
     }
 }
