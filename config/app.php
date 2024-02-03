@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'admin_email' => env('ADMIN_EMAIL', 'example@gmail.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

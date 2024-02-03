@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend\AppIdeias;
 
 use App\Http\Controllers\Controller;
-use App\Services\GitHubIntegration;
+use App\Http\Services\GitHubIntegration;
 use Illuminate\Http\Request;
 
 class RepositoryController extends Controller
