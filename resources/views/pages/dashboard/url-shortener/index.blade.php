@@ -17,10 +17,14 @@
                     <label class="form-label">Type the full url</label>
                     <input name="url" type="url" class="form-control">
                 </div>
+                @if($errors->any())
+                {!! implode('', $errors->all('<div class="text-danger">:message</div>')) !!}
+                @endif
                 <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Shortly</button>
                 </div>
             </form>
+
         </div>
     </div>
     <div class="py-4">

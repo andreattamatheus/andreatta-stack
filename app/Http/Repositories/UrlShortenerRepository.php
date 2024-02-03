@@ -4,6 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Http\Interfaces\UrlShortenerInterface;
 use App\Models\UrlShortener;
+use Psy\Exception\ThrowUpException;
 
 class UrlShortenerRepository implements UrlShortenerInterface
 {
@@ -11,7 +12,12 @@ class UrlShortenerRepository implements UrlShortenerInterface
 
     public function getAll()
     {
-        return $this->model::all()->sortByDesc('created_at');
+        try {
+            return $this->model::all()->sortByDesc('created_at');
+        } catch (\Exception $e) {
+            \Log::alert($e->getMessage());
+            return [];
+        }
     }
 
     public function getByShortUrl(string $shortUrl)
@@ -21,7 +27,7 @@ class UrlShortenerRepository implements UrlShortenerInterface
 
     public function store(string $url, string $shortUrl, int $userId)
     {
-        $this->model::create([
+        return $this->model::create([
             'url' => $url,
             'short_url' => $shortUrl,
             'user_id' => $userId,
@@ -30,6 +36,6 @@ class UrlShortenerRepository implements UrlShortenerInterface
 
     public function destroy(int $id)
     {
-        $this->model::destroy($id);
+        return $this->model::destroy($id);
     }
 }

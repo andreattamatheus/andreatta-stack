@@ -3,6 +3,8 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\UrlShortenerRepository;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UrlShortenerService
 {
@@ -17,14 +19,23 @@ class UrlShortenerService
      * Create a new URL in the database.
      *
      * @param  UrlShortenerRequest  $request  The request object containing the URL.
-     * @return void
+     * @return UrlShortener The created URL.
      */
     public function store($request)
     {
-        $url = $request->input('url');
-        $shortUrl = $this->makeShortUrl();
-        $userId = 1;
-        $this->urlShortenerRepository->store($url, $shortUrl, $userId);
+        try {
+            DB::beginTransaction();
+                $url = $request->input('url');
+                $shortUrl = $this->makeShortUrl();
+                $userId = User::where('email', config('app.admin_email'))->first()->id;
+                $urlShortener = $this->urlShortenerRepository->store($url, $shortUrl, $userId);
+            DB::commit();
+            return $urlShortener;
+        } catch (\Exception $e) {
+            \Log::alert($e);
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     /**
