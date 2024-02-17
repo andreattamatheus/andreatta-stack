@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Services\GitHubIntegration;
+use App\Http\Services\GitHubIntegration;
+use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
 {
-    private $github;
+    private GitHubIntegration $github;
 
     /**
      * ProfileController constructor.
@@ -22,7 +23,7 @@ class DashboardController extends Controller
     /**
      * Display the profile index page.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
