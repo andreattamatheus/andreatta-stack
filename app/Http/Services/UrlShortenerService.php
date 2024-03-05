@@ -3,25 +3,33 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\UrlShortenerRepository;
+use App\Http\Requests\UrlShortenerRequest;
+use App\Models\UrlShortener;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Random\RandomException;
 
 class UrlShortenerService
 {
-    private $urlShortenerRepository;
-
-    public function __construct(UrlShortenerRepository $urlShortenerRepository)
+    /**
+     * Create a new UrlShortenerService instance.
+     *
+     * @param  UrlShortenerRepository  $urlShortenerRepository  The repository for the URL shortener.
+     * @return void
+     */
+    public function __construct(
+        private UrlShortenerRepository $urlShortenerRepository
+    )
     {
-        $this->urlShortenerRepository = $urlShortenerRepository;
     }
 
     /**
      * Create a new URL in the database.
      *
-     * @param  UrlShortenerRequest  $request  The request object containing the URL.
+     * @param UrlShortenerRequest $request  The request object containing the URL.
      * @return UrlShortener The created URL.
      */
-    public function store($request)
+    public function store(UrlShortenerRequest $request): UrlShortener
     {
         try {
             DB::beginTransaction();
@@ -42,6 +50,7 @@ class UrlShortenerService
      * Generates a short URL based on the current timestamp and a random string.
      *
      * @return string The generated short URL.
+     * @throws RandomException
      */
     public function makeShortUrl(): string
     {
@@ -50,8 +59,6 @@ class UrlShortenerService
         $uniqueUrl = $timestamp.$randomString;
         $shortUrl = base_convert($uniqueUrl, 10, 36);
         $shortUrl = str_replace(['a', 'e', 'i', 'o', 'u'], '', $shortUrl);
-        $shortUrl = substr($shortUrl, 0, 15);
-
-        return $shortUrl;
+        return substr($shortUrl, 0, 15);
     }
 }

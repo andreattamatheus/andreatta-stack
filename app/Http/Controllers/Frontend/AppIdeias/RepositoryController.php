@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class RepositoryController extends Controller
 {
-    private $github;
 
     /**
      * Constructor method for the RepositoryController class.
@@ -16,9 +15,10 @@ class RepositoryController extends Controller
      * @param  GitHubIntegration  $github  The GitHubIntegration instance.
      * @return void
      */
-    public function __construct(GitHubIntegration $github)
+    public function __construct(
+        private GitHubIntegration $github
+    )
     {
-        $this->github = $github;
     }
 
     /**

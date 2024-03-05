@@ -13,13 +13,13 @@
         <div class="row gx-4 mb-2">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-                    <img src="{{ $user->avatar_url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <img src="{{ $user->avatar_url ?? '' }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                {{ $user->name }}
+                {{ $user->name ?? '' }}
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
                 Software Engineer
@@ -115,7 +115,7 @@
                 </div>
                 <div class="card-body p-3">
                   <p class="text-sm cursor-pointer" contenteditable>
-                    {{ $user->bio }}
+                    {{ $user->bio ?? '' }}
                   </p>
                   <hr class="horizontal gray-light my-4">
                   {{-- <ul class="list-group">

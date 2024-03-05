@@ -7,19 +7,13 @@ use Illuminate\Support\Facades\Cache;
 
 class GitHubIntegration
 {
-    /**
-     * The HTTP client for making requests to the GitHub API.
-     *
-     * @var Client
-     */
-    private $client;
 
     /**
      * Create a new GitHubIntegration instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(public Client $client)
     {
         $this->client = new Client([
             'headers' => [

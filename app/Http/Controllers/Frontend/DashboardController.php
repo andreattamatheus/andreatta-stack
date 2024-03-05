@@ -8,16 +8,13 @@ use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
 {
-    private GitHubIntegration $github;
-
     /**
      * ProfileController constructor.
      *
      * @param  GitHubIntegration  $github  The GitHubIntegration instance.
      */
-    public function __construct(GitHubIntegration $github)
+    public function __construct(private GitHubIntegration $github)
     {
-        $this->github = $github;
     }
 
     /**
