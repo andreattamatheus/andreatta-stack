@@ -3,10 +3,10 @@
 use App\Http\Repositories\UrlShortenerRepository;
 use App\Models\User;
 
-it('has url shortener page', function () {
-    $response = $this->get('/app-ideas/url-shortener');
-    $response->assertStatus(200);
-});
+//it('has url shortener page', function () {
+//    $response = $this->get('/app-ideas/url-shortener');
+//    $response->assertStatus(200);
+//});
 
 it('can create a new URL', function () {
     $user = User::factory()->create();

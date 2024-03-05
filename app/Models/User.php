@@ -13,18 +13,12 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    /**
+
+   /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
-    private $name;
-
-    private $email;
-
-    private $imgUrl;
-
-    private $password;
 
     protected $fillable = [
         'name',
@@ -33,6 +27,7 @@ class User extends Authenticatable
         'github_id',
         'auth_type',
         'img_url',
+        'login'
     ];
 
     /**
@@ -151,5 +146,10 @@ class User extends Authenticatable
         $this->imgUrl = $img_url;
 
         return $this;
+    }
+
+    public function getLogin(): string
+    {
+        return $this->login;
     }
 }

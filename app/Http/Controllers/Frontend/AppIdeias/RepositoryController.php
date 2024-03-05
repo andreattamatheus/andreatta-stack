@@ -16,7 +16,7 @@ class RepositoryController extends Controller
      * @return void
      */
     public function __construct(
-        private GitHubIntegration $github
+        private readonly GitHubIntegration $github
     )
     {
     }

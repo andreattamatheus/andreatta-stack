@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Cache;
 
 class GitHubIntegration
 {
-
     /**
      * Create a new GitHubIntegration instance.
      *
@@ -17,50 +16,10 @@ class GitHubIntegration
     {
         $this->client = new Client([
             'headers' => [
-                'Authorization' => 'token '.config('auth.github_token'),
+//                'Authorization' => 'token '.config('auth.github_token'),
                 'Accept' => 'application/vnd.github.v3+json',
             ],
         ]);
-    }
-
-    /**
-     * Retrieves the user profile from GitHub.
-     *
-     * @return object The user profile object.
-     */
-    public function getUser(): object
-    {
-        try {
-            // Check if the user profile is cached
-            $user = Cache::get('user:admin:profile');
-            if (! $user) {
-                // Fetch the user profile from GitHub API
-                $getUserFromGithub = $this->client->request(
-                    'GET',
-                    'https://api.github.com/user'
-                );
-
-                if ($getUserFromGithub->getStatusCode() == 200) {
-                    // Parse the response and cache the user profile
-                    $user = json_decode($getUserFromGithub->getBody()->getContents());
-                    Cache::put('user:admin:profile', [
-                        'name' => $user->name,
-                        'followers' => (string) $user->followers,
-                        'following' => (string) $user->following,
-                        'avatar_url' => $user->avatar_url,
-                        'html_url' => $user->html_url,
-                        'location' => $user->location,
-                        'company' => $user->company,
-                        'bio' => $user->bio,
-                    ], 60 * 60 * 24);
-                }
-            }
-
-            return (object) $user;
-        } catch (\Throwable $th) {
-            // Return error response if an exception occurs
-            return response()->json(['error' => $th->getMessage()], 500);
-        }
     }
 
     /**
@@ -74,14 +33,14 @@ class GitHubIntegration
     {
         try {
             $repositories = Cache::get('user:admin:repository');
-            $userName = $userName ?? config('auth.github_username');
-            if (! $repositories) {
+            $userName = $userName ?? auth()->user()->login;
+            if (!$repositories) {
                 $response = $this->client->request(
                     'GET',
                     'https://api.github.com/users/'.$userName.'/repos'
                 );
-                if ($response->getStatusCode() == 200) {
-                    $repositoriesData = json_decode($response->getBody()->getContents());
+                if ($response->getStatusCode() === 200) {
+                    $repositoriesData = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
                     foreach ($repositoriesData as $key => $repo) {
                         Cache::put('user:admin:repository'.$key, $repo);
                     }
@@ -92,6 +51,7 @@ class GitHubIntegration
             return (object) $repositories;
         } catch (\Throwable $th) {
             \Log::error($th->getMessage());
+            
             return (object) [];
         }
     }

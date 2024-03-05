@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -32,6 +31,7 @@ Route::get('/auth/github/callback', [AuthController::class, 'gitHubCallback'])->
 Route::get('/redirect/{shortUrl}', [UrlShortenerController::class, 'redirect'])->name('url-shortener.redirect');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::group(['prefix' => '/app-ideas'], function () {
         Route::get('/repository', [RepositoryController::class, 'index'])->name('repository.index');
         Route::post('/repository', [RepositoryController::class, 'index'])->name('repository.search');
