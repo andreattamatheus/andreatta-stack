@@ -33,4 +33,11 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to AWS EC2
-        run: ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.AWS_INSTANCE_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.AWS_INSTANCE_IP }} <<EOF
+          cd /var/www/andreatta-stack
+          git pull
+          composer install --no-dev
+          php artisan migrate --force
+          php artisan optimize
+          EOF
