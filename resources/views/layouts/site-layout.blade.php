@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Andreatta Stack
+        Andreatta Stack 2
     </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--     Fonts and icons     -->
