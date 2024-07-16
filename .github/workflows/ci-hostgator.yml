@@ -1,0 +1,72 @@
+name: Laravel Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1  # Adjust to your PHP version
+
+      - name: Install Composer
+        run: |
+          php -r "readfile('https://getcomposer.org/installer');" | php
+          mv composer.phar /usr/local/bin/composer
+        env:
+          COMPOSER_ALLOW_SUPERUSER: 1
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --no-ansi --no-progress
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Install Node.js and NPM
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust to your Node.js version
+
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Build Assets with Laravel Mix
+        run: npm run production
+
+      - name: Set Application Key for CI
+        run: php -r "file_put_contents('.env', 'APP_KEY=base64:hhF3GHvcxK/AnaaD25hl4Thj4bhG9Zw2CUP5V1Tzbi4=');"
+
+      - name: Run php artisan optimize
+        run: php artisan optimize
+
+      - name: Run php artisan config clear
+        run: php artisan config:clear
+
+      - name: Run clear routes in artisan
+        run: php artisan route:clear
+
+      - name: Run Tests
+        run: php artisan test
+
+      - name: Deploy to HostGator
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: ""
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}  # Adjust the path to your web root
+          EXCLUDE: "/dist/, /node_modules/, /.env"
+
